@@ -3,15 +3,15 @@ from prettytable import PrettyTable
 
 class Controller:
 
-    MAX_LEN_NAME = 20
-    MAX_LEN_DESCRIPTION = 150
-
     def __init__(self, Model, View):
         self.Model = Model
         self.View = View
 
     def check_if_task_can_be_created(self, name, description):
-        if len(name) > self.MAX_LEN_NAME or len(description) > self.MAX_LEN_DESCRIPTION:
+        max_len_name = 20
+        max_len_description = 150
+        if len(name) > max_len_name or len(description) > max_len_description:
+            self.View.display_wrong_lenght_msg()
             return False
         return True
 
@@ -19,7 +19,7 @@ class Controller:
         for task in self.Model.to_do_list:
             if task.name == task_name:
                 return task
-        self.View.display_message()
+        self.View.display_wrong_task_name()
         input()
 
     def add_task(self):
@@ -28,7 +28,8 @@ class Controller:
         if self.check_if_task_can_be_created(name, description):
             self.Model.add_task(name, description)
         else:
-            self.View.display_message()
+            self.View.display_wrong_lenght_msg
+            input()
 
     def remove_task(self):
         task_name = input('Enter task name to delete: ')
@@ -66,10 +67,18 @@ class Controller:
             self.Model.modify_task_description(task, new_description)
 
     def display_all_tasks(self):
-        tasks_table = PrettyTable(['ID', 'NAME', 'DESCRIPTION', 'IS DONE'])
+        tasks_table = PrettyTable(['ID', 'NAME'])
         for task in self.Model.to_do_list:
-            tasks_table.add_row([task.id, task.name, task.description, task.is_done])
+            tasks_table.add_row([task.id, task.name])
         self.View.display_all_tasks(tasks_table)
 
     def display_task_details(self):
-        pass
+        task_name = input('Enter task name: ')
+        task = self.search_task_by_name(task_name)
+        if task:
+            task_details = PrettyTable(['ID', 'NAME', 'DESCRIPTION', 'IS DONE'])
+            task_details.add_row([task.id, task.name, task.description, task.is_done])
+            self.View.display_task_details(task_details)
+
+
+
