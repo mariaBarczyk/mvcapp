@@ -19,6 +19,8 @@ class Controller:
         for task in self.Model.to_do_list:
             if task.name == task_name:
                 return task
+        self.View.display_message()
+        input()
 
     def add_task(self):
         name = input('Enter task name: ')
@@ -26,18 +28,20 @@ class Controller:
         if self.check_if_task_can_be_created(name, description):
             self.Model.add_task(name, description)
         else:
-            View.display_message()
+            self.View.display_message()
 
     def remove_task(self):
         task_name = input('Enter task name to delete: ')
         task = self.search_task_by_name(task_name)
-        self.Model.remove_task(task)
+        if task:
+            self.Model.remove_task(task)
 
     def mark_task(self):
         task_name = input('Enter task name to mark: ')
         task = self.search_task_by_name(task_name)
-        task.is_done = True
-        
+        if task:
+            task.is_done = True
+
     def modify_task(self):
         user_choice = int(input('Press 1 to modify name or 2 to modify description: '))
         if user_choice == 1:
@@ -49,15 +53,17 @@ class Controller:
 
     def modify_task_name(self):
         task_name = input('Enter task name: ')
-        new_name = input('Enter new task name: ')
         task = self.search_task_by_name(task_name)
-        self.Model.modify_task_name(task, new_name)
+        if task:
+            new_name = input('Enter new task name: ')
+            self.Model.modify_task_name(task, new_name)
 
     def modify_task_desription(self):
         task_name = input('Enter task name: ')
-        new_description = input('Enter new task description: ')
         task = self.search_task_by_name(task_name)
-        self.Model.modify_task_description(task, new_description)
+        if task:
+            new_description = input('Enter new task description: ')
+            self.Model.modify_task_description(task, new_description)
 
     def display_all_tasks(self):
         tasks_table = PrettyTable(['ID', 'NAME', 'DESCRIPTION', 'IS DONE'])
