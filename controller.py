@@ -1,7 +1,14 @@
+from prettytable import PrettyTable
+
+
 class Controler:
 
-    def __init__(self):
-        pass
+    MAX_LEN_NAME = 20
+    MAX_LEN_DESCRIPTION = 150
+
+    def __init__(self, Model, View):
+        self.Model = Model
+        self.View = View
 
     def add_task(self):
         name = input('Enter task name: ')
