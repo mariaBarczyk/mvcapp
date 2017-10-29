@@ -53,3 +53,9 @@ class Controler:
         new_description = input('Enter new task description: ')
         task = self.search_task_by_name(task_name)
         self.Model.modify_task_description(task, new_description)
+
+    def display_all_tasks(self):
+        tasks_table = PrettyTable(['ID', 'NAME', 'DESCRIPTION', 'IS DONE'])
+        for task in self.Model.to_do_list:
+            tasks_table.add_row([task.id, task.name, task.description, task.is_done])
+        self.View.display_all_tasks(tasks_table)
