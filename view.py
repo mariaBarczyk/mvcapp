@@ -11,3 +11,6 @@ class View:
 
     def display_all_tasks(self, table):
         print(table)
+
+    def display_message(self):
+        print('Wrong input')
