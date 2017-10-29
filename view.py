@@ -1,6 +1,3 @@
-from prettytable import PrettyTable
-
-
 class View:
 
     MENU_OPTIONS = ['Add task', 'Modify task', 'Remove task',
