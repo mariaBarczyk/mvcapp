@@ -10,6 +10,11 @@ class Controler:
         self.Model = Model
         self.View = View
 
+    def check_if_task_can_be_created(self, name, description):
+        if len(name) > self.MAX_LEN_NAME or len(description) > self.MAX_LEN_DESCRIPTION:
+            return False
+        return True
+
     def add_task(self):
         name = input('Enter task name: ')
         description = input('Enter task descritpion: ')
