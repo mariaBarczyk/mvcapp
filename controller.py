@@ -1,7 +1,7 @@
 from prettytable import PrettyTable
 
 
-class Controler:
+class Controller:
 
     MAX_LEN_NAME = 20
     MAX_LEN_DESCRIPTION = 150
@@ -33,6 +33,11 @@ class Controler:
         task = self.search_task_by_name(task_name)
         self.Model.remove_task(task)
 
+    def mark_task(self):
+        task_name = input('Enter task name to mark: ')
+        task = self.search_task_by_name(task_name)
+        task.is_done = True
+        
     def modify_task(self):
         user_choice = int(input('Press 1 to modify name or 2 to modify description: '))
         if user_choice == 1:
