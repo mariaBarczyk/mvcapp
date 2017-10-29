@@ -11,6 +11,9 @@ def main():
     controller = Controller(model, view)
 
     while True:
+        os.system('clear')
+        View.display_menu()
+        os.sysr = tem('clear')
         user_choice = int(input('Select an option: '))
         if user_choice == 0:
             controller.add_task()
@@ -25,6 +28,7 @@ def main():
             input()
         elif user_choice == 5:
             contrroler.display_single_task()
+        os.system('clear')
 
 
 if __name__ == '__main__':
