@@ -13,12 +13,12 @@ class ToDoTask:
     def mark_task(self):
         task.is_done = True
 
-    def generate_id(self):
+    @staticmethod
+    def generate_id():
         tasks_id = []
         symbols = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')']
         while True:
             first_part = random.choice(symbols)
-            print(first_part)
             second_part = random.choice(string.ascii_letters)
             id = first_part + second_part
             if id not in tasks_id:
