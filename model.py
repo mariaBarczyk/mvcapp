@@ -13,3 +13,7 @@ class ToDoList:
 
     def __init__(self):
         self.to_do_list = []
+
+    def add_task(self, name, description):
+        task = ToDoTask(name, description)
+        self.to_do_list.append(task)
