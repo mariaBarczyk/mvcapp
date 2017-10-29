@@ -5,6 +5,9 @@ class ToDoTask:
         self.description = description
         self.is_done = is_done
 
+    def mark_task(self):
+        task.is_done = True    
+
 
 class ToDoList:
 
