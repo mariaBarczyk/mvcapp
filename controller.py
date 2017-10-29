@@ -15,6 +15,11 @@ class Controler:
             return False
         return True
 
+    def search_task_by_name(self, task_name):
+        for task in self.Model.to_do_list:
+            if task.name == task_name:
+                return task
+
     def add_task(self):
         name = input('Enter task name: ')
         description = input('Enter task descritpion: ')
