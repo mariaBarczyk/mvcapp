@@ -5,9 +5,10 @@ import random
 class ToDoTask:
 
     def __init__(self, name, description):
+        self.id = self.generate_id()
         self.name = name
         self.description = description
-        self.is_done = is_done
+        self.is_done = False
 
     def mark_task(self):
         task.is_done = True
