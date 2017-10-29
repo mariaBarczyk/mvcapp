@@ -59,3 +59,6 @@ class Controler:
         for task in self.Model.to_do_list:
             tasks_table.add_row([task.id, task.name, task.description, task.is_done])
         self.View.display_all_tasks(tasks_table)
+
+    def display_task_details(self):
+        pass
